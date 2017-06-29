@@ -1,0 +1,11 @@
+<ion-header>
+  <ion-navbar color="primary">
+    <ion-title>{{title}}</ion-title>
+  </ion-navbar>
+</ion-header>
+<ion-content padding>
+<ion-tabs tabsPlacement="top" tabsLayout="icon-start" tabsHighlight="true" color="toolbarBtn">
+    <ion-tab [root]="productosListadoRoot" tabTitle="Productos listado" tabIcon="information-circle"></ion-tab>
+    <ion-tab [root]="productosStockRoot" tabTitle="Productos stock" tabIcon="information-circle"></ion-tab>
+</ion-tabs>
+</ion-content>

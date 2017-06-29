@@ -1,0 +1,13 @@
+<ion-header no-border>
+  <ion-toolbar color="primary">
+    <ion-title>{{title}}</ion-title>
+    <button *ngFor="let but of buttonsMenu" ion-button round small color="toolbarBtn" (click)="onButtonClick(but.page)" icon-left>
+      <ion-icon name="{{but.iconName}}"></ion-icon>
+      {{but.title}}
+    </button>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+</ion-content>

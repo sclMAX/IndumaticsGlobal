@@ -1,0 +1,24 @@
+page-login {
+  .background{
+      width: 100%;
+      height: 100%;
+      background: #64b1ff;
+  }
+  .scroll-content{
+      text-align: center;
+  }
+ion-card.card{
+    max-width: 350px;
+    background: #ffffdf;
+    border-radius: 10px;
+    margin-left: auto;
+    margin-right: auto;
+}
+ion-card-header.card-header{
+    background-color:#0080ff;
+    color: #ffffdf;
+}
+.item{
+    background: #ffffdf;
+}
+}

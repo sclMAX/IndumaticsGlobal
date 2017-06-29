@@ -1,0 +1,30 @@
+<ion-content class="background ">
+  <ion-card>
+    <ion-card-header text-center>LOGIN</ion-card-header>
+    <ion-card-content padding>
+      <form #formLogin="ngForm" (ngSubmit)="loginClick(formLogin)" novalidate>
+        <ion-list no-lines>
+          <ion-item>
+            <ion-label *ngIf="!idSucursal" floating>Sucursal</ion-label>
+            <ion-label *ngIf="idSucursal" staked>Sucursal</ion-label>
+            <ion-select [(ngModel)]="idSucursal" name="sucursal" required>
+              <ion-option *ngFor="let suc of sucursales" value="{{suc.idSucursal}}">{{suc.Nombre}}</ion-option>
+            </ion-select>
+          </ion-item>
+          <ion-item>
+            <ion-label floating>Usuario</ion-label>
+            <ion-input type="text" [(ngModel)]="usuario" name="usuario" required></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label floating>Contraseña</ion-label>
+            <ion-input type="password" [(ngModel)]="clave" name="clave" required></ion-input>
+          </ion-item>
+          <br>
+        </ion-list>
+        <br>
+        <button ion-button round block color="primary" type="submit" [disabled]="!formLogin.valid || badLoginCount >= 3">{{(badLoginCount < 3)?'INGRESAR':'Maximo Error Alcanzado!'}}</button>
+
+      </form>
+    </ion-card-content>
+  </ion-card>
+</ion-content>
