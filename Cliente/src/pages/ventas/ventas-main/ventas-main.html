@@ -1,9 +1,23 @@
 <ion-header>
   <ion-navbar color="primary">
     <ion-title>{{title}}</ion-title>
+     <button ion-button round small color="toolbarBtn" icon-left (click)="clienteAdd()">
+      <ion-icon name="add"></ion-icon>
+      Cliente
+    </button>
   </ion-navbar>
 </ion-header>
 
 <ion-content padding>
+
+  <ion-card *ngFor="let cliente of clientes">
+    <ion-card-title>{{cliente.idCliente}}</ion-card-title>
+    <ion-card-header> {{cliente.Nombre}}</ion-card-header>
+    <ion-card-content>
+      {{cliente.Direccion}}<br>
+      {{cliente.Localidad}} {{cliente.Provincia}} {{cliente.Pais}} {{cliente.Telefonos}} {{cliente.Email}}<br>
+      <small>{{cliente.FI }} {{cliente.FUA }}</small>
+    </ion-card-content>
+  </ion-card>
 
 </ion-content>
