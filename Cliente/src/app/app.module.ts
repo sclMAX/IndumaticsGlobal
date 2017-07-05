@@ -1,3 +1,4 @@
+import { VentasClienteAmPage } from './../pages/ventas/ventas-cliente-am/ventas-cliente-am';
 import { HomePage } from './../pages/home/home';
 import {LoginPage} from './../pages/login/login';
 import {BrowserModule} from '@angular/platform-browser';
@@ -15,10 +16,10 @@ import { PerfilesProvider } from '../providers/perfiles/perfiles';
 import { ClientesProvider } from '../providers/clientes/clientes';
 
 @NgModule({
-  declarations: [MyApp,  LoginPage, HomePage],
+  declarations: [MyApp,  LoginPage, HomePage, VentasClienteAmPage],
   imports: [BrowserModule, IonicModule.forRoot(MyApp), HttpModule],
   bootstrap: [IonicApp],
-  entryComponents: [MyApp, LoginPage, HomePage],
+  entryComponents: [MyApp, LoginPage, HomePage, VentasClienteAmPage],
   providers: [
     StatusBar,
     SplashScreen,

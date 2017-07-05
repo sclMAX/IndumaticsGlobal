@@ -1,8 +1,8 @@
 import {Injectable} from '@angular/core';
-import {Http, Response, RequestOptions} from '@angular/http';
+import {Http, Response, RequestOptions, Headers} from '@angular/http';
 import {Observable} from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
-export let idSesion:string;
+export let idSesion: string;
 
 @Injectable()
 export class LoginProvider {
@@ -11,17 +11,22 @@ export class LoginProvider {
 
   chkLogin(sucursal: number, usuario: string,
            clave: string): Observable<string> {
-    let options = new RequestOptions(
-        {params: {'idSucursal': sucursal, 'Usuario': usuario, 'Clave': clave}});
-    return this.http.get(this.url, options)
+    return this.http
+        .post(
+            this.url, {}, new RequestOptions({
+              params:
+                  {'idSucursal': sucursal, 'Usuario': usuario, 'Clave': clave},
+              headers: new Headers(
+                  {'Content-Type': 'application/x-www-form-urlencoded'})
+            }))
         .map(this.extractData)
         .catch(this.handleError);
   }
 
-  private extractData(res: Response): string {   
-      let body = res.json();
-      idSesion = body['idSesion'] || '';
-      return idSesion;
+  private extractData(res: Response): string {
+    let body = res.json();
+    idSesion = body['idSesion'] || '';
+    return idSesion;
   }
   private handleError(error: Response | any) {
     let errMsg: string;

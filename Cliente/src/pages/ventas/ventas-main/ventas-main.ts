@@ -1,3 +1,4 @@
+import { HomePage } from './../../home/home';
 import {
   Cliente,
   Clientes,
@@ -10,6 +11,7 @@ import {
   NavParams,
   LoadingController
 } from 'ionic-angular';
+import { VentasClienteAmPage } from '../ventas-cliente-am/ventas-cliente-am';
 
 @IonicPage()
 @Component({
@@ -41,6 +43,10 @@ export class VentasMainPage {
   }
 
   clienteAdd(){
-   
+    this.navCtrl.setRoot(VentasClienteAmPage);
+  }
+
+  goHome(){
+    this.navCtrl.setRoot(HomePage);
   }
 }

@@ -20,7 +20,7 @@ export class HomePage {
 
   onButtonClick(page: any) {
     if (page) {
-      this.navCtrl.push(page);
+      this.navCtrl.setRoot(page);
     }
   }
 
