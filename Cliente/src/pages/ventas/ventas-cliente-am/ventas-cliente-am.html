@@ -3,7 +3,7 @@
     <ion-title>{{title}}</ion-title>
   </ion-navbar>
 </ion-header>
-<ion-content padding>
+<ion-content padding class="background ">
   <form #form="ngForm" (ngSubmit)="onSubmit()" novalidate>
     <ion-list>
       <ion-item>
@@ -34,11 +34,15 @@
         <ion-label floating>Pais</ion-label>
         <ion-input type="text" [(ngModel)] = "cliente.Pais"  name="Pais" required></ion-input>
       </ion-item>
+      <ion-item>
+        <ion-label floating>Comentarios</ion-label>
+        <ion-textarea  [(ngModel)] = "cliente.Comentarios"  name="Comentarios" ></ion-textarea>
+      </ion-item>
       <br>
     </ion-list>
   </form>
 </ion-content>
-<ion-footer text-right>
-  <button ion-button icon-left color="danger" (click)="goBack()" > <ion-icon name="cancel"></ion-icon> Cancelar</button>
+<ion-footer text-center>
+  <button ion-button icon-left color="light" (click)="goBack()" > <ion-icon name="cancel"></ion-icon> Cancelar</button>
   <button ion-button icon-left color="secondary" type="submit" (click)="onSubmit()" [disabled]="!form.valid" > <ion-icon name="save"></ion-icon> Guardar</button>
 </ion-footer>

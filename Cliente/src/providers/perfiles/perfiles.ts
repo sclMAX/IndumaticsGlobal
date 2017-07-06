@@ -11,7 +11,7 @@ export class PerfilesProvider {
   getAll(): Observable<Array<Perfil>> {
     return this.http.get(this.url).map(this.extractData);
   }
-  private extractData(res: Response) {
+  private extractData(res: Response):Array<Perfil> {
     Perfiles = res.json() || [];
     return Perfiles;
   }

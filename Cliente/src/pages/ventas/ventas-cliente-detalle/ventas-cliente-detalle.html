@@ -1,0 +1,45 @@
+<ion-header>
+  <ion-navbar color="primary">
+    <ion-title>{{title}}</ion-title>
+  </ion-navbar>
+</ion-header>
+<ion-content padding>
+  <ion-item-group>
+    <!-- DATOS  -->
+    <ion-item-divider color="light" (click)="isShowDatos = !isShowDatos">
+      <button item-end ion-button round mini   color="dark" >
+        <ion-icon name="{{isShowDatos?'remove':'add'}}"></ion-icon>
+      </button>DATOS
+    </ion-item-divider>
+    <ion-item-group *ngIf="isShowDatos">
+      <ion-item>DIRECCION: {{cliente.Direccion}} - {{cliente.Localidad}} - {{cliente.Provincia}} - {{cliente.Pais}}</ion-item>
+      <ion-item>TELEFONOS: {{cliente.Telefonos}}</ion-item>
+      <ion-item>EMAIL: {{cliente.Email}}</ion-item>
+      <ion-item>COMENTARIOS: {{cliente.Comentarios}}</ion-item>
+    </ion-item-group>
+     <!-- PEDIDOS PENDIENTES  -->
+    <ion-item-divider color="light">
+      <button item-end ion-button round mini   color="dark" (click)="isShowDatos = !isShowDatos">
+        <ion-icon name="{{isShowDatos?'remove':'add'}}"></ion-icon>
+      </button>PEDIDOS PENDIENTES
+    </ion-item-divider>
+    <ion-item-group *ngIf="isShowDatos">
+      <ion-item>5032</ion-item>
+      <ion-item>TELEFONOS: {{cliente.Telefonos}}</ion-item>
+      <ion-item>EMAIL: {{cliente.Email}}</ion-item>
+      <ion-item>COMENTARIOS: {{cliente.Comentarios}}</ion-item>
+    </ion-item-group>
+    <!-- PEDIDOS ENTREGADOS  -->
+    <ion-item-divider color="light">
+      <button item-end ion-button round mini   color="dark" (click)="isShowDatos = !isShowDatos">
+        <ion-icon name="{{isShowDatos?'remove':'add'}}"></ion-icon>
+      </button>PEDIDOS ENTREGADOS
+    </ion-item-divider>
+    <ion-item-group *ngIf="isShowDatos">
+      <ion-item>5032</ion-item>
+      <ion-item>TELEFONOS: {{cliente.Telefonos}}</ion-item>
+      <ion-item>EMAIL: {{cliente.Email}}</ion-item>
+      <ion-item>COMENTARIOS: {{cliente.Comentarios}}</ion-item>
+    </ion-item-group>
+  </ion-item-group>
+</ion-content>

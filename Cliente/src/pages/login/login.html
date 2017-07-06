@@ -22,7 +22,7 @@
           <br>
         </ion-list>
         <br>
-        <button ion-button round block color="primary" type="submit" [disabled]="!formLogin.valid || badLoginCount >= 3">{{(badLoginCount < 3)?'INGRESAR':'Maximo Error Alcanzado!'}}</button>
+        <button ion-button round block color="primary" type="submit" [disabled]="!formLogin.valid || badLoginCount >= maxBadLogin">{{(badLoginCount < maxBadLogin)?'INGRESAR':'Maximo Error Alcanzado!'}}</button>
 
       </form>
     </ion-card-content>

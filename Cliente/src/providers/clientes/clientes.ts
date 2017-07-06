@@ -47,6 +47,7 @@ export class Cliente {
   Pais: string = 'Argentina';
   Email: string = '';
   Telefonos: string = '';
+  Comentarios:string = '';
   idSucursal: number = 0;
   FUA: Date = new Date();
   FI: Date = new Date();

@@ -1,0 +1,27 @@
+// Coloque su configuración en este archivo para sobrescribir la configuración predeterminada y de usuario.
+{
+    "files.exclude": {
+        "**/.git": true,
+        "**/.svn": true,
+        "**/.hg": true,
+        "**/CVS": true,
+        "**/.DS_Store": true,
+        "**/e2e": true,
+        "**/tslint.json": true,
+        "**/.editorconfig": true,
+        "**/karma.*":true,
+        "**/tsconfig.*":true,
+        "**/protractor.*":true,
+        "**/polyfills.ts":true,
+        "**/test.ts":true,
+        "**/environments":true,
+        "**/favicon.ico":true,
+        "**/README.md":true,
+        "**/www":true,
+        "**/typings":true,
+        "**/hooks":true,
+        "**/plugins":true,
+        "**/service-worker.js":true,
+        "**/.git*":true
+    }
+}

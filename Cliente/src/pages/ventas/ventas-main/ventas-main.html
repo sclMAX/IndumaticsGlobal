@@ -12,14 +12,20 @@
 </ion-header>
 
 <ion-content padding>
-
-  <ion-card *ngFor="let cliente of clientes">
-    <ion-card-title>{{cliente.idCliente}}</ion-card-title>
-    <ion-card-header> {{cliente.Nombre}}</ion-card-header>
-    <ion-card-content>
-      {{cliente.Direccion}}<br> {{cliente.Localidad}} {{cliente.Provincia}} {{cliente.Pais}} {{cliente.Telefonos}} {{cliente.Email}}<br>
-      <small>{{cliente.FI }} {{cliente.FUA }}</small>
-    </ion-card-content>
-  </ion-card>
+  <ion-searchbar (ionInput)="onFindClientes($event)" [showCancelButton]="true" (ionCancel)="onFindCancel($event)" placeholder="Buscar cliente..."></ion-searchbar>
+  <ion-list>
+    <button ion-item *ngFor="let cliente of clientes" (click)="goCliente(cliente)">
+      <h1 item-start>{{cliente.idCliente}}</h1>
+      <div>
+        <h2>{{cliente.Nombre}}</h2>
+        <p>
+          <ion-icon name="pin"></ion-icon> {{cliente.Direccion}} - {{cliente.Localidad}} - {{cliente.Provincia}}
+          <ion-icon name="call"></ion-icon> {{cliente.Telefonos}}
+          <ion-icon name="mail"></ion-icon> {{cliente.Email}}
+        </p>
+        <p><small>Fecha Ingreso:{{cliente.FI}} - Fecha Ultima Mod:{{cliente.FUA}}</small></p>
+      </div>
+    </button>
+  </ion-list>
 
 </ion-content>

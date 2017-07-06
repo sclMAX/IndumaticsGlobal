@@ -11,7 +11,8 @@ import {
   NavController,
   NavParams,
   LoadingController,
-  AlertController
+  AlertController,
+  ToastController
 } from 'ionic-angular';
 
 @IonicPage()
@@ -25,6 +26,7 @@ export class VentasClienteAmPage {
   constructor(private navCtrl: NavController, private navParams: NavParams,
               private clientesP: ClientesProvider,
               private aletCtrl: AlertController,
+              private toastCtrl: ToastController,
               private loadCtrl: LoadingController) {
     let oldCliente: Cliente = this.navParams.get('Cliente');
     if (oldCliente) {
@@ -38,44 +40,41 @@ export class VentasClienteAmPage {
 
   onSubmit() {
     let load = this.loadCtrl.create({content: 'Guardando cliente...'});
+    let toast = this.toastCtrl.create({position: 'middle'});
     load.present().then(
-        () => {this.clientesP.add(this.cliente)
-                   .subscribe(
-                       (res) => {
-                         let alert = this.aletCtrl.create({
-                           title: 'Agregar Cliente...',
-                           message: 'Cliente agregado correctamente!',
-                           buttons: [
-                             {
-                               text: 'Aceptar',
-                               handler: () => {
-                                 if (res) {
-                                   Clientes.push(res);
-                                 }
-                                 this.goBack();
-                               }
-                             }
-                           ]
-                         });
-                         alert.present();
-                       },
-                       (error: Response) => {
-                         load.dismiss();
-                         console.log('STATUS:',error.status);
-                         switch (error.status) {
-                           case 401:
-                             this.navCtrl.setRoot(LoginPage);
-                             break;
-                           case 500:
-                             console.error(
-                                 'YA EXISTE UN CLIENTE CON ESTE NOMBRE! ERROR:',
-                                 error.statusText);
-                             break;
-                           default:
-                             console.error('ERROR INESPERADO!=>', error.statusText);
-                         }
-                       },
-                       () => load.dismiss())});
+        () => {
+            this.clientesP.add(this.cliente)
+                .subscribe(
+                    (res) => {
+                      toast.setDuration(2000);
+                      toast.setMessage('Cliente guardado correctamente!');
+                      toast.onDidDismiss(() => {
+                        if (res) Clientes.push(res);
+                        this.navCtrl.setRoot(VentasMainPage);
+                      });
+                      toast.present();
+                    },
+                    (error: Response) => {
+                      load.dismiss();
+                      toast.setBackButtonText('OK');
+                      toast.setShowCloseButton(true);
+                      switch (error.status) {
+                        case 401:
+                          toast.setMessage('Acceso Denegado!');
+                          toast.onDidDismiss(
+                              () => { this.navCtrl.setRoot(LoginPage); });
+                          toast.present();
+                          break;
+                        case 500:
+                          toast.setMessage(
+                              `Ya existe un cliente con la Razon Social: ${this.cliente.Nombre}!`);
+                          break;
+                        default:
+                          toast.setMessage(`Error inesperado! Cod:${error.status} - ERROR:${error.statusText}`);
+                      }
+                      toast.present();
+                    },
+                    () => load.dismiss())});
   }
   goBack() { this.navCtrl.setRoot(VentasMainPage); }
 }
