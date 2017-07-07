@@ -1,0 +1,1 @@
+export let ApiBasePath:string = 'http://indumatics.ddns.net';

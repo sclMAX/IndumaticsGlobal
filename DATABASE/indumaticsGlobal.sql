@@ -1,5 +1,3 @@
-CREATE DATABASE  IF NOT EXISTS `indumatics` /*!40100 DEFAULT CHARACTER SET latin1 */;
-USE `indumatics`;
 -- MySQL dump 10.13  Distrib 5.7.17, for Win64 (x86_64)
 --
 -- Host: localhost    Database: indumatics
@@ -41,7 +39,7 @@ CREATE TABLE `clientes` (
   UNIQUE KEY `Nombre_UNIQUE` (`Nombre`),
   KEY `fk_clientes_sucursales1_idx` (`idSucursal`),
   CONSTRAINT `fk_clientes_sucursales1` FOREIGN KEY (`idSucursal`) REFERENCES `sucursales` (`idSucursal`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=51 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -50,7 +48,7 @@ CREATE TABLE `clientes` (
 
 LOCK TABLES `clientes` WRITE;
 /*!40000 ALTER TABLE `clientes` DISABLE KEYS */;
-INSERT INTO `clientes` VALUES (1,'Prueba 1',',asmd,smad,','Paraná','Entre Rios','Argentina',NULL,NULL,1,'2017-06-30 16:13:42','2017-06-30 16:13:06');
+INSERT INTO `clientes` VALUES (49,'INDUMATICS S.A.','Valentín Torra 5016','Paraná','Entre Ríos','Argentina','perfiles@indumatics.com.ar',' 543434362033 / 4301014 / 4301016',1,'2017-07-06 19:09:17','2017-07-06 19:09:17'),(50,'Alumax','Calle Publica 189','Corrientes','Corrientes','Argentina','alumax@gmail.com','4362356',1,'2017-07-06 19:15:24','2017-07-06 19:15:24');
 /*!40000 ALTER TABLE `clientes` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
@@ -65,6 +63,154 @@ DELIMITER ;;
 /*!50003 CREATE*/ /*!50017 DEFINER=`root`@`localhost`*/ /*!50003 TRIGGER `indumatics`.`clientes_BEFORE_UPDATE` BEFORE UPDATE ON `clientes` FOR EACH ROW
 BEGIN
 	SET new.FUA = now();
+END */;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+
+--
+-- Table structure for table `colores`
+--
+
+DROP TABLE IF EXISTS `colores`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `colores` (
+  `idColor` int(11) unsigned NOT NULL,
+  `Color` varchar(45) NOT NULL,
+  `IncrementoPeso` float NOT NULL DEFAULT '0',
+  `FI` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `FUA` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`idColor`),
+  UNIQUE KEY `Color_UNIQUE` (`Color`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `colores`
+--
+
+LOCK TABLES `colores` WRITE;
+/*!40000 ALTER TABLE `colores` DISABLE KEYS */;
+INSERT INTO `colores` VALUES (1,'BLANCO BRILLANTE',0,'2017-07-07 14:19:57','2017-07-07 14:20:10');
+/*!40000 ALTER TABLE `colores` ENABLE KEYS */;
+UNLOCK TABLES;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8 */ ;
+/*!50003 SET character_set_results = utf8 */ ;
+/*!50003 SET collation_connection  = utf8_general_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+/*!50003 CREATE*/ /*!50017 DEFINER=`root`@`localhost`*/ /*!50003 TRIGGER `indumatics`.`colores_BEFORE_UPDATE` BEFORE UPDATE ON `colores` FOR EACH ROW
+BEGIN
+set new.FUA = now();
+END */;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+
+--
+-- Table structure for table `documentos`
+--
+
+DROP TABLE IF EXISTS `documentos`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `documentos` (
+  `idDocumento` int(11) NOT NULL AUTO_INCREMENT,
+  `idTipoDocumento` int(11) NOT NULL,
+  `idCliente` int(11) NOT NULL,
+  `idSucursal` int(11) NOT NULL,
+  `Fecha` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `FechaEntrega` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `Comentarios` varchar(250) DEFAULT NULL,
+  `FUA` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`idDocumento`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `documentos`
+--
+
+LOCK TABLES `documentos` WRITE;
+/*!40000 ALTER TABLE `documentos` DISABLE KEYS */;
+/*!40000 ALTER TABLE `documentos` ENABLE KEYS */;
+UNLOCK TABLES;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8 */ ;
+/*!50003 SET character_set_results = utf8 */ ;
+/*!50003 SET collation_connection  = utf8_general_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+/*!50003 CREATE*/ /*!50017 DEFINER=`root`@`localhost`*/ /*!50003 TRIGGER `indumatics`.`documentos_BEFORE_UPDATE` BEFORE UPDATE ON `documentos` FOR EACH ROW
+BEGIN
+	set new.FUA = now();
+END */;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+
+--
+-- Table structure for table `documentos_items`
+--
+
+DROP TABLE IF EXISTS `documentos_items`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `documentos_items` (
+  `idDocumentoDetalle` int(11) NOT NULL AUTO_INCREMENT,
+  `idDocumento` int(11) NOT NULL,
+  `idPerfil` int(11) NOT NULL,
+  `idColor` int(11) NOT NULL,
+  `Cantidad` int(11) NOT NULL DEFAULT '1',
+  `Unidades` float NOT NULL DEFAULT '0',
+  `PrecioUnidad` float NOT NULL DEFAULT '0',
+  `Descuento` float NOT NULL DEFAULT '0',
+  `FI` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `FUA` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`idDocumentoDetalle`,`idDocumento`),
+  UNIQUE KEY `idDocumentoDetalle_UNIQUE` (`idDocumentoDetalle`),
+  KEY `fk_documentos_detalle_colores1_idx` (`idColor`),
+  KEY `fk_documentos_detalle_perfiles1_idx` (`idPerfil`),
+  KEY `fk_documento_detalle_idx` (`idDocumento`),
+  CONSTRAINT `fk_detalle_documentos` FOREIGN KEY (`idDocumento`) REFERENCES `documentos` (`idDocumento`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `fk_detalle_perfiles` FOREIGN KEY (`idPerfil`) REFERENCES `perfiles` (`idPerfil`) ON DELETE NO ACTION ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `documentos_items`
+--
+
+LOCK TABLES `documentos_items` WRITE;
+/*!40000 ALTER TABLE `documentos_items` DISABLE KEYS */;
+/*!40000 ALTER TABLE `documentos_items` ENABLE KEYS */;
+UNLOCK TABLES;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8 */ ;
+/*!50003 SET character_set_results = utf8 */ ;
+/*!50003 SET collation_connection  = utf8_general_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+/*!50003 CREATE*/ /*!50017 DEFINER=`root`@`localhost`*/ /*!50003 TRIGGER `indumatics`.`documentos_detalle_BEFORE_UPDATE` BEFORE UPDATE ON `documentos_items` FOR EACH ROW
+BEGIN
+	set new.FUA = now();
 END */;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
@@ -107,7 +253,8 @@ DROP TABLE IF EXISTS `perfiles`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `perfiles` (
-  `idPerfil` varchar(20) CHARACTER SET utf8 NOT NULL COMMENT 'Codigo de perfil',
+  `idPerfil` int(11) NOT NULL AUTO_INCREMENT,
+  `CodigoPerfil` varchar(20) CHARACTER SET utf8 NOT NULL COMMENT 'Codigo de perfil',
   `Descripcion` varchar(150) CHARACTER SET utf8 NOT NULL COMMENT 'Comentarios del tipo de perfil',
   `Largo` int(10) unsigned NOT NULL DEFAULT '6050' COMMENT 'Largo de la barra en milimetros',
   `Peso` float unsigned NOT NULL DEFAULT '0' COMMENT 'Peso en Kilos popr metro',
@@ -116,7 +263,7 @@ CREATE TABLE `perfiles` (
   `FI` datetime DEFAULT CURRENT_TIMESTAMP,
   `FUA` datetime DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`idPerfil`),
-  UNIQUE KEY `idPerfil_UNIQUE` (`idPerfil`),
+  UNIQUE KEY `CodigoPerfil_UNIQUE` (`CodigoPerfil`),
   KEY `fk_perfiles_lineas_idx` (`idLinea`),
   CONSTRAINT `fk_perfiles_lineas` FOREIGN KEY (`idLinea`) REFERENCES `lineas` (`idLinea`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
@@ -130,26 +277,6 @@ LOCK TABLES `perfiles` WRITE;
 /*!40000 ALTER TABLE `perfiles` DISABLE KEYS */;
 /*!40000 ALTER TABLE `perfiles` ENABLE KEYS */;
 UNLOCK TABLES;
-/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
-/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
-/*!50003 SET @saved_col_connection = @@collation_connection */ ;
-/*!50003 SET character_set_client  = utf8 */ ;
-/*!50003 SET character_set_results = utf8 */ ;
-/*!50003 SET collation_connection  = utf8_general_ci */ ;
-/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
-/*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,STRICT_ALL_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ALLOW_INVALID_DATES,ERROR_FOR_DIVISION_BY_ZERO,TRADITIONAL,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
-DELIMITER ;;
-/*!50003 CREATE*/ /*!50017 DEFINER=`root`@`localhost`*/ /*!50003 TRIGGER `indumatics`.`perfiles_BEFORE_UPDATE`
-BEFORE UPDATE ON `indumatics`.`perfiles`
-FOR EACH ROW
-BEGIN
-	SET NEW.FUA = NOW();
-END */;;
-DELIMITER ;
-/*!50003 SET sql_mode              = @saved_sql_mode */ ;
-/*!50003 SET character_set_client  = @saved_cs_client */ ;
-/*!50003 SET character_set_results = @saved_cs_results */ ;
-/*!50003 SET collation_connection  = @saved_col_connection */ ;
 
 --
 -- Table structure for table `sucursales`
@@ -176,7 +303,7 @@ CREATE TABLE `sucursales` (
 
 LOCK TABLES `sucursales` WRITE;
 /*!40000 ALTER TABLE `sucursales` DISABLE KEYS */;
-INSERT INTO `sucursales` VALUES (1,'Corrientes','Sucursale Corrientes Capital','2017-06-26 11:31:57','2017-06-26 11:36:02'),(3,'Chaco','Sucursal Chaco','2017-06-26 16:37:57','2017-06-26 16:37:57'),(5,'Villa Maria','Sucursal Villa Maria Cordoba','2017-06-26 16:39:47','2017-06-26 16:39:47');
+INSERT INTO `sucursales` VALUES (1,'Corrientes','Sucursale Corrientes Capital','2017-06-26 11:31:57','2017-06-26 11:36:02'),(3,'Rio Cuarto','Sucursal Rio Cuarto, Cordoba','2017-06-26 16:37:57','2017-07-07 17:34:59'),(5,'Villa Maria','Sucursal Villa Maria, Cordoba','2017-06-26 16:39:47','2017-07-07 17:34:59');
 /*!40000 ALTER TABLE `sucursales` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
@@ -199,6 +326,39 @@ DELIMITER ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
 /*!50003 SET character_set_results = @saved_cs_results */ ;
 /*!50003 SET collation_connection  = @saved_col_connection */ ;
+
+--
+-- Table structure for table `tipo_documento`
+--
+
+DROP TABLE IF EXISTS `tipo_documento`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `tipo_documento` (
+  `idTipoDocumento` int(11) NOT NULL AUTO_INCREMENT,
+  `Letra` char(1) NOT NULL,
+  `Documento` varchar(30) NOT NULL,
+  `Descripcion` varchar(150) DEFAULT NULL,
+  `isActualizaStock` tinyint(1) NOT NULL DEFAULT '0',
+  `isEditable` tinyint(1) NOT NULL DEFAULT '0',
+  `isSuma` tinyint(1) NOT NULL DEFAULT '1',
+  `FI` datetime DEFAULT CURRENT_TIMESTAMP,
+  `FUA` datetime DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`idTipoDocumento`),
+  UNIQUE KEY `idTipoDocumento_UNIQUE` (`idTipoDocumento`),
+  UNIQUE KEY `Letra_UNIQUE` (`Letra`),
+  UNIQUE KEY `Documento_UNIQUE` (`Documento`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `tipo_documento`
+--
+
+LOCK TABLES `tipo_documento` WRITE;
+/*!40000 ALTER TABLE `tipo_documento` DISABLE KEYS */;
+/*!40000 ALTER TABLE `tipo_documento` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
 -- Table structure for table `usuarios`
@@ -227,7 +387,7 @@ CREATE TABLE `usuarios` (
 
 LOCK TABLES `usuarios` WRITE;
 /*!40000 ALTER TABLE `usuarios` DISABLE KEYS */;
-INSERT INTO `usuarios` VALUES (1,'MAX','4e46dc0969e6621f2d61d2228e3cd91b75cd9edc','7921b7f8da49f80147ebd5b6a4ec38f9a81be5b9','2017-06-27 18:52:27','2017-06-30 19:26:33');
+INSERT INTO `usuarios` VALUES (1,'MAX','4e46dc0969e6621f2d61d2228e3cd91b75cd9edc','d07c6a99f51082d415b9a9c28385fbae7cca2cee','2017-06-27 18:52:27','2017-07-07 21:28:19');
 /*!40000 ALTER TABLE `usuarios` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
@@ -289,4 +449,4 @@ DELIMITER ;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2017-06-30 16:36:34
+-- Dump completed on 2017-07-07 18:41:05

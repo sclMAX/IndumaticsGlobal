@@ -7,9 +7,8 @@
   <ion-item-group>
     <!-- DATOS  -->
     <ion-item-divider color="light" (click)="isShowDatos = !isShowDatos">
-      <button item-end ion-button round mini   color="dark" >
-        <ion-icon name="{{isShowDatos?'remove':'add'}}"></ion-icon>
-      </button>DATOS
+      Datos de Contacto
+      <button item-end ion-button round mini color="dark"><ion-icon name="{{isShowDatos?'remove':'add'}}"></ion-icon></button>
     </ion-item-divider>
     <ion-item-group *ngIf="isShowDatos">
       <ion-item>DIRECCION: {{cliente.Direccion}} - {{cliente.Localidad}} - {{cliente.Provincia}} - {{cliente.Pais}}</ion-item>
@@ -17,25 +16,34 @@
       <ion-item>EMAIL: {{cliente.Email}}</ion-item>
       <ion-item>COMENTARIOS: {{cliente.Comentarios}}</ion-item>
     </ion-item-group>
-     <!-- PEDIDOS PENDIENTES  -->
-    <ion-item-divider color="light">
-      <button item-end ion-button round mini   color="dark" (click)="isShowDatos = !isShowDatos">
-        <ion-icon name="{{isShowDatos?'remove':'add'}}"></ion-icon>
-      </button>PEDIDOS PENDIENTES
+    <!-- PEDIDOS PENDIENTES  -->
+    <ion-item-divider color="light" (click)="isShowPedidosPedientes = !isShowPedidosPedientes">
+      Pedidos Pendientes (0)
+      <button item-end ion-button round mini color="dark"><ion-icon name="{{isShowPedidosPedientes?'remove':'add'}}"></ion-icon></button>
     </ion-item-divider>
-    <ion-item-group *ngIf="isShowDatos">
+    <ion-item-group *ngIf="isShowPedidosPedientes">
       <ion-item>5032</ion-item>
       <ion-item>TELEFONOS: {{cliente.Telefonos}}</ion-item>
       <ion-item>EMAIL: {{cliente.Email}}</ion-item>
       <ion-item>COMENTARIOS: {{cliente.Comentarios}}</ion-item>
     </ion-item-group>
     <!-- PEDIDOS ENTREGADOS  -->
-    <ion-item-divider color="light">
-      <button item-end ion-button round mini   color="dark" (click)="isShowDatos = !isShowDatos">
-        <ion-icon name="{{isShowDatos?'remove':'add'}}"></ion-icon>
-      </button>PEDIDOS ENTREGADOS
+    <ion-item-divider color="light" (click)="isShowPedidosEntregados = !isShowPedidosEntregados">
+      Pedidos Entregados (0)
+      <button item-end ion-button round mini color="dark"><ion-icon name="{{isShowPedidosEntregados?'remove':'add'}}"></ion-icon></button>
     </ion-item-divider>
-    <ion-item-group *ngIf="isShowDatos">
+    <ion-item-group *ngIf="isShowPedidosEntregados">
+      <ion-item>5032</ion-item>
+      <ion-item>TELEFONOS: {{cliente.Telefonos}}</ion-item>
+      <ion-item>EMAIL: {{cliente.Email}}</ion-item>
+      <ion-item>COMENTARIOS: {{cliente.Comentarios}}</ion-item>
+    </ion-item-group>
+     <!-- PRESUPUESTOS  -->
+    <ion-item-divider color="light" (click)="isShowPresupuestos = !isShowPresupuestos">
+      Presupuestos (0) Activos(0) Vencidos (0)
+      <button item-end ion-button round mini color="dark"><ion-icon name="{{isShowPresupuestos?'remove':'add'}}"></ion-icon></button>
+    </ion-item-divider>
+    <ion-item-group *ngIf="isShowPresupuestos">
       <ion-item>5032</ion-item>
       <ion-item>TELEFONOS: {{cliente.Telefonos}}</ion-item>
       <ion-item>EMAIL: {{cliente.Email}}</ion-item>

@@ -1,3 +1,4 @@
+import {ApiBasePath} from './../../comun/rutas';
 import {Observable} from 'rxjs/Observable';
 import {Injectable} from '@angular/core';
 import {Http, Response} from '@angular/http';
@@ -5,14 +6,14 @@ import 'rxjs/add/operator/map';
 
 @Injectable()
 export class LineasProvider {
-  private url: string = 'http://indumatics.ddns.net/lineas';
+  private url: string = `${ApiBasePath}/lineas`;
   constructor(private http: Http) {}
 
   getAll(): Observable<Array<Linea>> {
-    return this.http.get(this.url).map(this.extractData)
+    return this.http.get(this.url).map(this.mapData)
   }
 
-  private extractData(res: Response) {
+  private mapData(res: Response):Array<Linea> {
     Lineas = res.json() || [];
     return Lineas;
   }

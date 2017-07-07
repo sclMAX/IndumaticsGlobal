@@ -11,3 +11,10 @@
 <ion-content>
 
 </ion-content>
+
+<ion-footer>
+  <ion-item *ngIf="isDownload">
+    <ion-spinner name="circles" item-start></ion-spinner>
+    {{msgDownload}}
+  </ion-item>
+</ion-footer>

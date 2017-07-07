@@ -18,6 +18,9 @@ export class VentasClienteDetallePage {
   cliente: Cliente;
   title: string;
   isShowDatos: boolean = true;
+  isShowPedidosPedientes: boolean = false;
+  isShowPedidosEntregados: boolean = false;
+  isShowPresupuestos: boolean = false;
   constructor(public navCtrl: NavController, public navParams: NavParams) {
     if (this.navParams.get('Cliente')) {
       this.cliente = this.navParams.get('Cliente');

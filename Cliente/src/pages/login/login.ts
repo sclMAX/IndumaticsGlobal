@@ -1,6 +1,10 @@
 import {HomePage} from './../home/home';
 import {LoginProvider, idSesion} from './../../providers/login/login.provider';
-import {SucursalesProvider} from './../../providers/sucursales/sucursales';
+import {
+  SucursalesProvider,
+  Sucursal,
+  Sucursales
+} from './../../providers/sucursales/sucursales';
 import {Component} from '@angular/core';
 import CryptoJS from 'crypto-js';
 import {
@@ -30,14 +34,18 @@ export class LoginPage {
                   private loadCtrl: LoadingController,
                   private alertCtrl: AlertController,
                   public navCtrl: NavController, public navParams: NavParams) {
-    this.getSucursales();
+    if (Sucursales) {
+      this.sucursales = Sucursales;
+    } else {
+      this.getSucursales();
+    }
   }
 
   async getSucursales() {
     let load = this.loadCtrl.create({content: 'Buscando sucursales'});
     load.present().then(() => {
       this.sucursalProvider.getSucursales().subscribe(
-          data => { this.sucursales = data; }, error => {
+          data => { this.sucursales = Sucursales; }, error => {
             load.dismiss();
             let toast = this.toastCtrl.create(
                 {message: 'Sin conexion!', duration: 2000, position: 'middle'});
