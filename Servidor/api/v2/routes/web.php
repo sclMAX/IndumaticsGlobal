@@ -24,6 +24,7 @@ $app->get('perfiles',function(){
 });
 $app->get('clientes','ClientesController@getAll');
 $app->post('clientes','ClientesController@add');
+$app->put('clientes','ClientesController@update');
 $app->get('tipoDocumentos', 'TipoDocumentoController@getAll');
 $app->get('colores',function(){
     return DB::select('SELECT * FROM colores');

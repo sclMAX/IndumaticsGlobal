@@ -1,4 +1,6 @@
-import { VentasClienteDetallePage } from '../ventas-cliente-detalle/ventas-cliente-detalle';
+import {
+  VentasClienteDetallePage
+} from '../ventas-cliente-detalle/ventas-cliente-detalle';
 import {LoginPage} from './../../login/login';
 import {Response} from '@angular/http';
 import {HomePage} from './../../home/home';
@@ -72,8 +74,12 @@ export class VentasMainPage {
 
   clienteAdd() { this.navCtrl.setRoot(VentasClienteAmPage); }
 
-  goCliente(cliente:Cliente){
-    this.navCtrl.push(VentasClienteDetallePage, {'Cliente':cliente});
+  goCliente(cliente: Cliente) {
+    this.navCtrl.push(VentasClienteDetallePage, {'Cliente': cliente});
+  }
+
+  goEditCliente(cliente: Cliente) {
+    this.navCtrl.setRoot(VentasClienteAmPage, {Cliente: cliente})
   }
 
   goHome() { this.navCtrl.setRoot(HomePage); }

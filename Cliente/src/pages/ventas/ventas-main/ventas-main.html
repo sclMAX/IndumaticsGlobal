@@ -14,18 +14,23 @@
 <ion-content padding>
   <ion-searchbar (ionInput)="onFindClientes($event)" [showCancelButton]="true" (ionCancel)="onFindCancel($event)" placeholder="Buscar cliente..."></ion-searchbar>
   <ion-list>
-    <button ion-item *ngFor="let cliente of clientes" (click)="goCliente(cliente)">
-      <h1 item-start>{{cliente.idCliente}}</h1>
-      <div>
-        <h2>{{cliente.Nombre}}</h2>
-        <p>
-          <ion-icon name="pin"></ion-icon> {{cliente.Direccion}} - {{cliente.Localidad}} - {{cliente.Provincia}}
-          <ion-icon name="call"></ion-icon> {{cliente.Telefonos}}
-          <ion-icon name="mail"></ion-icon> {{cliente.Email}}
-        </p>
-        <p><small>Fecha Ingreso:{{cliente.FI}} - Fecha Ultima Mod:{{cliente.FUA}}</small></p>
-      </div>
-    </button>
+    <ion-item-sliding *ngFor="let cliente of clientes">
+      <ion-item>
+        <h1 item-start>{{cliente.idCliente}}</h1>
+        <div>
+          <h2>{{cliente.Nombre}}</h2>
+          <p>
+            <ion-icon name="pin"></ion-icon> {{cliente.Direccion}} - {{cliente.Localidad}} - {{cliente.Provincia}}
+            <ion-icon name="call"></ion-icon> {{cliente.Telefonos}}
+            <ion-icon name="mail"></ion-icon> <a href="https://mail.google.com/mail/u/0/?view=cm&fs=1&tf=1&to={{cliente.Email}}" target="_blank">{{cliente.Email}}</a>
+          </p>
+          <p><small>Fecha Ingreso:{{cliente.FI}} - Fecha Ultima Mod:{{cliente.FUA}}</small></p>
+        </div>
+      </ion-item>
+      <ion-item-options side="left">
+        <button ion-button color="secondary" (click)="goCliente(cliente)"><ion-icon name="eye"></ion-icon></button>
+        <button ion-button color="light" (click)="goEditCliente(cliente)"><ion-icon name="create"></ion-icon></button>
+      </ion-item-options>
+    </ion-item-sliding>
   </ion-list>
-
 </ion-content>

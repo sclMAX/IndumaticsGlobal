@@ -25,9 +25,27 @@ export class ClientesProvider {
     return this.http.post(this.url, body, options).map(this.mapData);
   }
 
+  update(cliente: Cliente): Observable<Cliente> {
+    let headers =
+        new Headers({'Content-Type': 'application/x-www-form-urlencoded'});
+    let options = new RequestOptions({headers: headers});
+    let body = `idSesion=${idSesion}&Cliente=${JSON.stringify(cliente)}`;
+
+    return this.http.put(this.url, body, options).map(this.mapData);
+  }
+
   private mapData(res: Response): Cliente {
     let body = res.json();
     let cliente: Cliente = body[0] || {};
+    if (cliente) {
+      let idx: number = Clientes.findIndex(
+          c => { return c.idCliente === cliente.idCliente; });
+      if (idx > -1) {
+        Clientes[idx] = cliente;
+      } else {
+        Clientes.push(cliente);
+      }
+    }
     return cliente;
   }
 
