@@ -23,5 +23,6 @@
         "**/plugins":true,
         "**/service-worker.js":true,
         "**/.git*":true
-    }
+    },
+    "git.ignoreLimitWarning": true
 }
