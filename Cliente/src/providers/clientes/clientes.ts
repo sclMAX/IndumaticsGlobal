@@ -5,6 +5,7 @@ import {idSesion} from './../login/login.provider';
 import {Injectable} from '@angular/core';
 import {Http, Response, RequestOptions, Headers} from '@angular/http';
 import 'rxjs/add/operator/map';
+import 'rxjs/add/operator/catch';
 
 @Injectable()
 export class ClientesProvider {
@@ -26,26 +27,26 @@ export class ClientesProvider {
   }
 
   update(cliente: Cliente): Observable<Cliente> {
-    let headers =
-        new Headers({'Content-Type': 'application/x-www-form-urlencoded'});
+    let req = new XMLHttpRequest();
+    let body = JSON.stringify({'idSesion': idSesion, 'Cliente': cliente});
+    req.open('PUT', this.url);
+    req.setRequestHeader('Accept', 'application/json');
+    req.onreadystatechange = function() {
+      if (req.readyState === 4) {
+        console.log(req.responseText);
+      }
+    };
+    req.setRequestHeader('Content-type', 'application/json');
+    req.send(body);
+    let headers = new Headers();
+    headers.append('Content-Type', 'application/json');
     let options = new RequestOptions({headers: headers});
-    let body = `idSesion=${idSesion}&Cliente=${JSON.stringify(cliente)}`;
-
     return this.http.put(this.url, body, options).map(this.mapData);
   }
 
   private mapData(res: Response): Cliente {
     let body = res.json();
     let cliente: Cliente = body[0] || {};
-    if (cliente) {
-      let idx: number = Clientes.findIndex(
-          c => { return c.idCliente === cliente.idCliente; });
-      if (idx > -1) {
-        Clientes[idx] = cliente;
-      } else {
-        Clientes.push(cliente);
-      }
-    }
     return cliente;
   }
 

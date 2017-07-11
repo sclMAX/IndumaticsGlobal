@@ -50,10 +50,21 @@ export class VentasClienteAmPage {
         this.clientesP.add(this.cliente)
             .subscribe(
                 (res) => {
+                  let isUpdate: boolean = false;
                   toast.setDuration(1000);
-                  toast.setMessage('Cliente guardado correctamente!');
-                  toast.onDidDismiss(
-                      () => { this.navCtrl.setRoot(VentasMainPage); });
+                  if (res) {
+                    Clientes.push(res);
+                    toast.setMessage(
+                        `Cliente guardado correctamente! ID:${res.idCliente}`);
+                  } else {
+                    toast.setMessage(`Cliente guardado correctamente!... 
+                        Actualizando datos...`);
+                    isUpdate = true;
+                  }
+                  toast.onDidDismiss(() => {
+                    this.navCtrl.setRoot(VentasMainPage,
+                                         {'isUpdate': isUpdate});
+                  });
                   toast.present();
                 },
                 (error: Response) => {
@@ -91,6 +102,7 @@ export class VentasClienteAmPage {
                   },
                   (error: Response) => {
                     load.dismiss();
+                    console.log('ERROR:', error);
                     toast.setBackButtonText('OK');
                     toast.setShowCloseButton(true);
                     switch (error.status) {

@@ -13,8 +13,9 @@ export class TipoDocumentosProvider {
     return this.http.get(this.url).map(this.mapData);
   }
 
-  get(idTipoDocumento:number):TipoDocumento{
-    return TiposDocumentos.find(item =>{return item.idTipoDocumento === idTipoDocumento});
+  get(idTipoDocumento: number): TipoDocumento {
+    return TiposDocumentos.find(
+        item => {return item.idTipoDocumento === idTipoDocumento});
   }
 
   private mapData(res: Response): Array<TipoDocumento> {
@@ -36,3 +37,6 @@ export class TipoDocumento {
 }
 
 export let TiposDocumentos: Array<TipoDocumento> = [];
+export const idPresupuesto: number = 0;
+export const idPedidoPendiente: number = 1;
+export const idPedidoEntregado: number = 2;

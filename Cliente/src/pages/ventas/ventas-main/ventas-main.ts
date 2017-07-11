@@ -31,7 +31,8 @@ export class VentasMainPage {
               private toastCtrl: ToastController, public navCtrl: NavController,
               public navParams: NavParams) {
     this.title = 'Ventas';
-    if (Clientes) {
+    let isUpdate:boolean = this.navParams.get('isUpdate');
+    if (Clientes && !isUpdate) {
       this.clientes = Clientes;
     } else {
       this.getClientes();

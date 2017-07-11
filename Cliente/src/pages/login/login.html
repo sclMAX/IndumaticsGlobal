@@ -8,7 +8,7 @@
             <ion-label *ngIf="!idSucursal" floating>Sucursal</ion-label>
             <ion-label *ngIf="idSucursal" staked>Sucursal</ion-label>
             <ion-select [(ngModel)]="idSucursal" name="sucursal" required>
-              <ion-option *ngFor="let suc of sucursales" value="{{suc.idSucursal}}">{{suc.Nombre}}</ion-option>
+              <ion-option *ngFor="let suc of sucursales |async" value="{{suc.idSucursal}}">{{suc.Nombre}}</ion-option>
             </ion-select>
           </ion-item>
           <ion-item>

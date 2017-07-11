@@ -28,7 +28,18 @@ import {
   TipoDocumentosProvider
 } from '../providers/tipo-documentos/tipo-documentos-provider';
 import {ColoresProvider} from '../providers/colores/colores';
-import { DocumentosProvider } from '../providers/documentos/documentos';
+import {DocumentosProvider} from '../providers/documentos/documentos';
+import {AngularFireModule} from 'angularfire2';
+import {AngularFireDatabaseModule} from 'angularfire2/database';
+
+export const FireBaseConfig = {
+  apiKey: "AIzaSyD7zoKlOj8l12BHBMqgUI4IT2TfcPoG4Z4",
+  authDomain: "indumaticsapp.firebaseapp.com",
+  databaseURL: "https://indumaticsapp.firebaseio.com",
+  projectId: "indumaticsapp",
+  storageBucket: "indumaticsapp.appspot.com",
+  messagingSenderId: "293106198530"
+};
 
 @NgModule({
   declarations: [
@@ -41,7 +52,13 @@ import { DocumentosProvider } from '../providers/documentos/documentos';
     VentasClienteAmPage,
     VentasClienteDetallePage
   ],
-  imports: [BrowserModule, IonicModule.forRoot(MyApp), HttpModule],
+  imports: [
+    BrowserModule,
+    IonicModule.forRoot(MyApp),
+    AngularFireModule.initializeApp(FireBaseConfig, 'indumaticsapp'),
+    AngularFireDatabaseModule,
+    HttpModule
+  ],
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
